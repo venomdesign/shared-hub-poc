@@ -13,7 +13,8 @@
     "docs:generate": "compodoc -p libs/shared-ui/tsconfig.lib.json",
     "docs:serve": "compodoc -p libs/shared-ui/tsconfig.lib.json -s -w --port 8080",
     "docs:build": "compodoc -p libs/shared-ui/tsconfig.lib.json -d docs/compodoc",
-    "docs:serve-static": "compodoc -p libs/shared-ui/tsconfig.lib.json -s --port 8080"
+    "docs:serve-static": "compodoc -p libs/shared-ui/tsconfig.lib.json -s --port 8080",
+    "serve:showcase": "ng serve showcase --port 4300"
   },
   "private": true,
   "dependencies": {

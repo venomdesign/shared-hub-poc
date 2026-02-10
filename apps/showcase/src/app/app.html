@@ -1,0 +1,137 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">
+        <i class="bi bi-palette-fill"></i> Shared UI Component Showcase
+      </span>
+      <div class="d-flex">
+        <shared-ui-badge label="Live Demo"></shared-ui-badge>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="alert alert-info" role="alert">
+          <h4 class="alert-heading">
+            <i class="bi bi-info-circle-fill"></i> Hot-Wired Component Library
+          </h4>
+          <p class="mb-0">
+            This showcase application imports components directly from <code>libs/shared-ui/src</code>.
+            Any changes you make to components will be reflected immediately without rebuilding!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Badge Component Demo -->
+    <div class="row mt-4">
+      <div class="col-12">
+        <h2><i class="bi bi-tag-fill"></i> Badge Component</h2>
+        <p class="text-muted">A version-aware badge component with automatic color coding</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="component-demo">
+          <h5>Default Badge</h5>
+          <shared-ui-badge></shared-ui-badge>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="component-demo">
+          <h5>Custom Label</h5>
+          <shared-ui-badge label="Showcase"></shared-ui-badge>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <h5>Usage Example</h5>
+        <div class="code-block">
+<shared-ui-badge label="My App"></shared-ui-badge>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <h5>TypeScript Import</h5>
+        <div class="code-block">
+import {{ '{' }} UiBadgeComponent {{ '}' }} from 'shared-ui';
+
+&#64;Component({{ '{' }}
+  imports: [UiBadgeComponent],
+  template: `<shared-ui-badge label="Example"></shared-ui-badge>`
+{{ '}' }})
+export class MyComponent {{ '{' }}{{ '}' }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <h2><i class="bi bi-star-fill"></i> Features</h2>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-lightning-charge-fill text-warning"></i> Hot Reload</h5>
+            <p class="card-text">
+              Edit components in <code>libs/shared-ui</code> and see changes instantly without rebuilding.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-palette-fill text-primary"></i> Live Examples</h5>
+            <p class="card-text">
+              See components in action with real-time updates as you develop.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-book-fill text-success"></i> Documentation</h5>
+            <p class="card-text">
+              View API docs at <a href="http://localhost:8080" target="_blank">localhost:8080</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="row mt-5 mb-5">
+      <div class="col-12">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-gear-fill"></i> Development Workflow</h5>
+            <ol>
+              <li>Edit components in <code>libs/shared-ui/src/lib/</code></li>
+              <li>Save your changes</li>
+              <li>See updates immediately in this showcase (no rebuild needed!)</li>
+              <li>Check API docs at <a href="http://localhost:8080" target="_blank">http://localhost:8080</a></li>
+            </ol>
+            <p class="mb-0 text-muted">
+              <strong>Tip:</strong> Keep this showcase running while developing components for instant feedback!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet />
