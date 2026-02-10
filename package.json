@@ -22,13 +22,14 @@
     "@angular/router": "^20.0.0",
     "@softarc/native-federation-node": "^3.3.4",
     "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
     "es-module-shims": "^1.5.12",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0",
     "shared-ui-v1": "file:artifacts/shared-ui-1.0.0.tgz",
     "shared-ui-v2": "file:artifacts/shared-ui-2.0.0.tgz",
-    "shared-ui-v3": "file:artifacts/shared-ui-3.0.0.tgz"
+    "shared-ui-v3": "file:artifacts/shared-ui-3.0.0.tgz",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular-architects/native-federation": "^21.1.0",
