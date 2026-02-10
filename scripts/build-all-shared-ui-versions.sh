@@ -19,25 +19,31 @@ build_version () {
 
   echo "== Building shared-ui v$VERSION =="
 
-  # 1) Set runtime constant
-  cat > libs/shared-ui/src/lib/version.ts <<EOF
+  # 1) Update source package.json version
+  node <<NODE
+const fs = require('fs');
+
+// Update package.json
+const pkgPath = 'libs/shared-ui/package.json';
+const pkg = JSON.parse(fs.readFileSync(pkgPath,'utf8'));
+pkg.version = '$VERSION';
+fs.writeFileSync(pkgPath, JSON.stringify(pkg,null,2));
+console.log('✔ libs/shared-ui/package.json version set to $VERSION');
+
+// Update version.ts to match package.json
+const versionTsPath = 'libs/shared-ui/src/lib/version.ts';
+const versionTs = \`// This file is updated by the build script
+// Version is set from libs/shared-ui/package.json during build
 export const SHARED_UI_VERSION = '$VERSION';
-EOF
+\`;
+fs.writeFileSync(versionTsPath, versionTs);
+console.log('✔ libs/shared-ui/src/lib/version.ts synced with package.json');
+NODE
 
   # 2) Build library
   ng build shared-ui
 
-  # 3) Patch generated package.json
-  node <<NODE
-const fs = require('fs');
-const pkgPath = 'dist/shared-ui/package.json';
-const pkg = JSON.parse(fs.readFileSync(pkgPath,'utf8'));
-pkg.version = '$VERSION';
-fs.writeFileSync(pkgPath, JSON.stringify(pkg,null,2));
-console.log('✔ dist/shared-ui/package.json version set to $VERSION');
-NODE
-
-  # 4) Pack
+  # 3) Pack
   pushd dist/shared-ui >/dev/null
   TARBALL=$(npm pack)
   popd >/dev/null
