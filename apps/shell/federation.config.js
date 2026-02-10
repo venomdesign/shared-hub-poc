@@ -225,13 +225,13 @@ module.exports = withNativeFederation({
     // Also share v1 and v2 to allow MFEs to use their preferred versions
     // when override is not active
     'shared-ui-v1': {
-      singleton: false,
+      singleton: true,
       strictVersion: false,
       requiredVersion: '1.0.0',
       version: '1.0.0',
     },
     'shared-ui-v2': {
-      singleton: false,
+      singleton: true,
       strictVersion: false,
       requiredVersion: '2.0.0',
       version: '2.0.0',
