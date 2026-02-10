@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="card-title mb-0">{{ title() }}</h1>
+            <shared-ui-badge label="Shared UI"></shared-ui-badge>
+          </div>
+          <p class="card-text">
+            This is MFE2 (Micro Frontend 2) using <strong>shared-ui v2.0.0</strong>.
+          </p>
+          <div class="alert alert-success" role="alert">
+            <strong>Version Independence:</strong> This MFE uses version 2.0.0 of the shared-ui library,
+            demonstrating how different microfrontends can use different versions of shared dependencies.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet />

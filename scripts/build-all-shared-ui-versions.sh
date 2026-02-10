@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "== Shared UI versioned build (Angular 19–correct) =="
+echo "== Building all shared-ui versions (v1, v2, v3) =="
 
 # Safety check
 if [ ! -f "libs/shared-ui/ng-package.json" ]; then
@@ -47,10 +47,11 @@ NODE
 }
 
 # -----------------------------
-# Build versions
+# Build all versions
 # -----------------------------
 build_version "1.0.0"
 build_version "2.0.0"
+build_version "3.0.0"
 
 # -----------------------------
 # Register aliases
@@ -64,6 +65,7 @@ const pkg = JSON.parse(fs.readFileSync('package.json','utf8'));
 pkg.dependencies ||= {};
 pkg.dependencies['shared-ui-v1'] = 'file:artifacts/shared-ui-1.0.0.tgz';
 pkg.dependencies['shared-ui-v2'] = 'file:artifacts/shared-ui-2.0.0.tgz';
+pkg.dependencies['shared-ui-v3'] = 'file:artifacts/shared-ui-3.0.0.tgz';
 
 fs.writeFileSync('package.json', JSON.stringify(pkg,null,2));
 console.log('✔ npm aliases registered');
@@ -71,4 +73,4 @@ NODE
 
 npm install --legacy-peer-deps
 
-echo "✅ Shared UI v1/v2 built and installed correctly"
+echo "✅ Shared UI v1/v2/v3 built and installed correctly"

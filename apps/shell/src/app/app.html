@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">
+      <strong>Shell Application</strong>
+    </a>
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a 
+            class="nav-link" 
+            routerLink="/home" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a 
+            class="nav-link" 
+            routerLink="/mfe1" 
+            routerLinkActive="active">
+            MFE1
+          </a>
+        </li>
+        <li class="nav-item">
+          <a 
+            class="nav-link" 
+            routerLink="/mfe2" 
+            routerLinkActive="active">
+            MFE2
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <router-outlet />
+</main>
