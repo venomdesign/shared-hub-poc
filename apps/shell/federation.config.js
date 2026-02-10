@@ -4,7 +4,71 @@ module.exports = withNativeFederation({
   name: 'shell',
 
   shared: {
-    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+    // ============================================================================
+    // CENTRAL DEPENDENCY MANAGEMENT
+    // ============================================================================
+    // The shell controls versions of common dependencies for all MFEs.
+    // This ensures consistency, reduces bundle sizes, and simplifies updates.
+    // MFEs will use these versions instead of bundling their own.
+    
+    // shareAll() automatically shares all dependencies with singleton: true
+    // This means the shell's versions take precedence
+    ...shareAll({ 
+      singleton: true,      // Only one version across all MFEs
+      strictVersion: true,  // Enforce version compatibility
+      requiredVersion: 'auto' 
+    }),
+    
+    // ============================================================================
+    // EXPLICIT CENTRAL CONTROL - Key Dependencies
+    // ============================================================================
+    // These are explicitly defined to demonstrate central version management
+    
+    // Angular Core Dependencies - Centrally Managed
+    '@angular/core': {
+      singleton: true,
+      strictVersion: true,
+      requiredVersion: 'auto',
+      eager: true, // Load with shell
+    },
+    '@angular/common': {
+      singleton: true,
+      strictVersion: true,
+      requiredVersion: 'auto',
+      eager: true,
+    },
+    '@angular/router': {
+      singleton: true,
+      strictVersion: true,
+      requiredVersion: 'auto',
+      eager: true,
+    },
+    '@angular/platform-browser': {
+      singleton: true,
+      strictVersion: true,
+      requiredVersion: 'auto',
+      eager: true,
+    },
+    
+    // Bootstrap - Centrally Managed
+    'bootstrap': {
+      singleton: true,
+      strictVersion: false, // Allow minor version differences
+      requiredVersion: 'auto',
+      eager: true,
+    },
+    
+    // RxJS - Centrally Managed
+    'rxjs': {
+      singleton: true,
+      strictVersion: true,
+      requiredVersion: 'auto',
+      eager: true,
+    },
+    
+    // ============================================================================
+    // CUSTOM SHARED LIBRARIES - Version Management Demo
+    // ============================================================================
     
     // Shell can provide shared-ui v3 as an override
     // When enabled, this forces all MFEs to use v3 regardless of their own version
