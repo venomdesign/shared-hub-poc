@@ -10,6 +10,18 @@ module.exports = withNativeFederation({
   shared: {
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
     
+    // Syncfusion packages - will use shell's versions
+    '@syncfusion/ej2-angular-grids': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: '29.2.11',
+    },
+    '@syncfusion/ej2-grids': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: '29.2.11',
+    },
+    
     // MFE1 uses shared-ui v1.0.0
     'shared-ui-v1': {
       singleton: false, // Allow version coexistence

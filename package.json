@@ -21,6 +21,8 @@
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
     "@softarc/native-federation-node": "^3.3.4",
+    "@syncfusion/ej2-angular-grids": "^29.2.11",
+    "@syncfusion/ej2-grids": "^29.2.11",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
     "es-module-shims": "^1.5.12",

@@ -67,6 +67,148 @@ module.exports = withNativeFederation({
     },
     
     // ============================================================================
+    // SYNCFUSION EJ2 COMPONENTS - Centrally Managed (Version 29)
+    // ============================================================================
+    
+    // Syncfusion Angular Grid - Centrally Managed
+    '@syncfusion/ej2-angular-grids': {
+      singleton: true,
+      strictVersion: false, // Allow minor version differences
+      requiredVersion: '29.2.11',
+      version: '29.2.11',
+      eager: false, // Load on demand when needed
+    },
+    
+    // Syncfusion Core Grid Package
+    '@syncfusion/ej2-grids': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: '29.2.11',
+      version: '29.2.11',
+      eager: false,
+    },
+    
+    // Syncfusion Base Package (Required by all EJ2 components)
+    '@syncfusion/ej2-base': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: true, // Load with shell as it's needed by all components
+    },
+    
+    // Syncfusion Data Package (Required by Grid)
+    '@syncfusion/ej2-data': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion Buttons Package
+    '@syncfusion/ej2-buttons': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion Popups Package
+    '@syncfusion/ej2-popups': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion Navigations Package
+    '@syncfusion/ej2-navigations': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion Inputs Package
+    '@syncfusion/ej2-inputs': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion Calendars Package
+    '@syncfusion/ej2-calendars': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion Dropdowns Package
+    '@syncfusion/ej2-dropdowns': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion Lists Package
+    '@syncfusion/ej2-lists': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion SplitButtons Package
+    '@syncfusion/ej2-splitbuttons': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion Notifications Package
+    '@syncfusion/ej2-notifications': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion Excel Export Package
+    '@syncfusion/ej2-excel-export': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion PDF Export Package
+    '@syncfusion/ej2-pdf-export': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion Compression Package
+    '@syncfusion/ej2-compression': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // Syncfusion File Utils Package
+    '@syncfusion/ej2-file-utils': {
+      singleton: true,
+      strictVersion: false,
+      requiredVersion: 'auto',
+      eager: false,
+    },
+    
+    // ============================================================================
     // CUSTOM SHARED LIBRARIES - Version Management Demo
     // ============================================================================
     
