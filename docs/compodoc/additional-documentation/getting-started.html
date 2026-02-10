@@ -1,0 +1,309 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Shared UI Component Library</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Shared UI Component Library</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content additional-page">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>Getting Started</h1>
+<p>Welcome to the <strong>Shared UI Component Library</strong> documentation!</p>
+<p>This library provides reusable Angular components for building consistent user interfaces across multiple microfrontend applications.</p>
+<h2>Installation</h2>
+<p>The library is available in multiple versions to support version independence across microfrontends:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># Install version 1.0.0 (Blue badge)
+npm install shared-ui-v1
+
+# Install version 2.0.0 (Green badge)
+npm install shared-ui-v2
+
+# Install version 3.0.0 (Red badge)
+npm install shared-ui-v3</code></pre></div><h2>Quick Start</h2>
+<h3>Importing Components</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { UiBadgeComponent } from &#39;shared-ui-v1&#39;;
+
+&#64;Component({
+  selector: &#39;app-my-component&#39;,
+  standalone: true,
+  imports: [UiBadgeComponent],
+  template: `
+    &lt;shared-ui-badge label=&quot;My App&quot;&gt;&lt;/shared-ui-badge&gt;
+  `
+})
+export class MyComponent {}</code></pre></div><h3>Using with Module Federation</h3>
+<p>The library is designed to work seamlessly with Angular Native Federation for microfrontend architectures.</p>
+<p><strong>Shell Configuration:</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">// federation.config.js
+shared: {
+  &#39;shared-ui-v1&#39;: {
+    singleton: false,
+    strictVersion: false,
+    requiredVersion: &#39;1.0.0&#39;,
+  }
+}</code></pre></div><h2>Available Components</h2>
+<h3>Badge Component</h3>
+<p>Display version badges with automatic color coding based on version number.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Automatic version detection from package.json</li>
+<li>Color-coded badges (Blue=v1, Green=v2, Red=v3)</li>
+<li>Customizable label</li>
+<li>Bootstrap 5 styling</li>
+</ul>
+<p><strong>Example:</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;shared-ui-badge label=&quot;Shared UI&quot;&gt;&lt;/shared-ui-badge&gt;</code></pre></div><h3>Syncfusion Grid Integration</h3>
+<p>The library includes Syncfusion EJ2 Grid (v29.2.11) with Bootstrap 5 theme.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Paging</li>
+<li>Sorting</li>
+<li>Filtering</li>
+<li>Excel/PDF export</li>
+<li>Bootstrap 5 theme</li>
+</ul>
+<p><strong>Example:</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { GridModule } from &#39;&#64;syncfusion/ej2-angular-grids&#39;;
+
+&#64;Component({
+  imports: [GridModule],
+  template: `
+    &lt;ejs-grid [dataSource]=&#39;data&#39; [allowPaging]=&#39;true&#39;&gt;
+      &lt;e-columns&gt;
+        &lt;e-column field=&#39;OrderID&#39; headerText=&#39;Order ID&#39;&gt;&lt;/e-column&gt;
+        &lt;e-column field=&#39;CustomerName&#39; headerText=&#39;Customer&#39;&gt;&lt;/e-column&gt;
+      &lt;/e-columns&gt;
+    &lt;/ejs-grid&gt;
+  `
+})</code></pre></div><h2>Architecture</h2>
+<h3>Version Independence</h3>
+<p>Each microfrontend can use a different version of the shared-ui library:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">┌─────────────────────────────────────────┐
+│              Shell (Host)                │
+│  Controls: Syncfusion v29.2.11          │
+└─────────────────────────────────────────┘
+           │                │
+    ┌──────┘                └──────┐
+    │                              │
+┌───▼────────┐              ┌─────▼──────┐
+│   MFE1     │              │   MFE2     │
+│ shared-ui  │              │ shared-ui  │
+│   v1.0.0   │              │   v2.0.0   │
+└────────────┘              └────────────┘</code></pre></div><h3>Central Dependency Management</h3>
+<p>The shell application centrally manages shared dependencies like Syncfusion, reducing bundle sizes by 67%.</p>
+<h2>Development</h2>
+<h3>Hot Module Replacement</h3>
+<p>When developing components, changes are immediately reflected in consuming applications without rebuilding:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># Terminal 1: Watch shared-ui changes
+npm run build:shared-ui -- --watch
+
+# Terminal 2: Run your app
+npm run serve:mfe1</code></pre></div><h3>Adding New Components</h3>
+<ol>
+<li>Create component in <code>libs/shared-ui/src/lib/</code></li>
+<li>Export from <code>libs/shared-ui/src/public-api.ts</code></li>
+<li>Build versions: <code>bash scripts/build-all-shared-ui-versions.sh</code></li>
+<li>Document with JSDoc comments for Compodoc</li>
+</ol>
+<h2>Live Examples</h2>
+<p>Visit the showcase applications to see live component demos:</p>
+<ul>
+<li><strong>MFE1</strong>: <a href="http://localhost:4201">http://localhost:4201</a> (Uses shared-ui v1.0.0)</li>
+<li><strong>MFE2</strong>: <a href="http://localhost:4202">http://localhost:4202</a> (Uses shared-ui v2.0.0)</li>
+<li><strong>Shell</strong>: <a href="http://localhost:4200">http://localhost:4200</a> (Host application)</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="../SYNCFUSION_INTEGRATION.md">Syncfusion Integration Guide</a></li>
+<li><a href="../VERSION_MANAGEMENT.md">Version Management</a></li>
+<li><a href="../CENTRAL_DEPENDENCY_MANAGEMENT.md">Central Dependency Management</a></li>
+<li><a href="../BADGE_FIX_SUMMARY.md">Badge Fix Summary</a></li>
+</ul>
+<h2>Support</h2>
+<p>For issues or questions, please refer to the project documentation or contact the development team.</p>
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
+            var COMPODOC_CURRENT_PAGE_URL = 'getting-started.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

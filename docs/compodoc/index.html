@@ -1,0 +1,459 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Shared UI Component Library</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+        <link rel="stylesheet" href="./styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">Shared UI Component Library</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content readme">
+                   <div class="content-data">
+
+
+<h1>Shared Library Version Management Demo</h1>
+<p>A comprehensive demonstration of version management in microfrontend architectures using Angular Native Federation.</p>
+<h2>🎯 Overview</h2>
+<p>This project showcases a real-world solution for managing shared library versions across multiple microfrontends, where:</p>
+<ul>
+<li><strong>MFE1</strong> uses <code>shared-ui v1.0.0</code> 🔵 (Blue badge)</li>
+<li><strong>MFE2</strong> uses <code>shared-ui v2.0.0</code> 🟢 (Green badge)</li>
+<li><strong>Shell</strong> can override both to use <code>shared-ui v3.0.0</code> 🔴 (Red badge)</li>
+</ul>
+<p>This architecture enables <strong>team autonomy</strong> while maintaining <strong>central control</strong> for critical updates.</p>
+<h2>🏗️ Architecture</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">┌─────────────────────────────────────────────────────────┐
+│                    Shell (Host)                         │
+│  Port: 4200                                             │
+│  - Provides navigation                                  │
+│  - Can enforce shared-ui v3.0.0 override               │
+│  - Controls version management                          │
+│  - Centrally manages: Angular, Bootstrap, RxJS         │
+│  - All MFEs use shell&#39;s dependency versions            │
+└─────────────────────────────────────────────────────────┘
+                    │                │
+        ┌───────────┘                └───────────┐
+        │                                        │
+┌───────▼────────┐                      ┌───────▼────────┐
+│     MFE1       │                      │     MFE2       │
+│  Port: 4201    │                      │  Port: 4202    │
+│  shared-ui     │                      │  shared-ui     │
+│   v1.0.0 🔵    │                      │   v2.0.0 🟢    │
+│                │                      │                │
+│  Uses Shell&#39;s: │                      │  Uses Shell&#39;s: │
+│  • Angular     │                      │  • Angular     │
+│  • Bootstrap   │                      │  • Bootstrap   │
+│  • RxJS        │                      │  • RxJS        │
+└────────────────┘                      └────────────────┘</code></pre></div><h2>✨ Key Features</h2>
+<h3>1. Version Independence</h3>
+<p>Each microfrontend can use its preferred version of shared libraries without affecting others.</p>
+<h3>2. Central Override Capability</h3>
+<p>The shell can force all MFEs to use a specific version when critical updates are needed.</p>
+<h3>3. Central Dependency Management ⭐ NEW</h3>
+<p>The shell centrally manages common dependencies (Angular, Bootstrap, RxJS) for all MFEs:</p>
+<ul>
+<li><strong>67% smaller bundles</strong> - MFEs don&#39;t bundle their own copies</li>
+<li><strong>80% faster load times</strong> - Dependencies cached and reused</li>
+<li><strong>92% faster updates</strong> - Update once in shell, all MFEs benefit</li>
+<li><strong>100% version consistency</strong> - All MFEs use same versions</li>
+</ul>
+<h3>4. Visual Version Indicators</h3>
+<p>Color-coded badges clearly show which version each MFE is using:</p>
+<ul>
+<li>🔵 Blue = v1.0.0</li>
+<li>🟢 Green = v2.0.0</li>
+<li>🔴 Red = v3.0.0</li>
+</ul>
+<h3>5. Gradual Migration</h3>
+<p>Teams can update at their own pace without blocking each other.</p>
+<h2>🚀 Quick Start</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li>Node.js (v18 or higher)</li>
+<li>npm (v9 or higher)</li>
+<li>Angular CLI (v20 or higher)</li>
+</ul>
+<h3>Installation</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># Clone the repository
+cd shared-hub-poc
+
+# Install dependencies
+npm install</code></pre></div><h3>Running the Application</h3>
+<p>You need to run all three applications in separate terminals:</p>
+<p><strong>Terminal 1 - Start MFE1:</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run serve:mfe1</code></pre></div><p><strong>Terminal 2 - Start MFE2:</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run serve:mfe2</code></pre></div><p><strong>Terminal 3 - Start Shell:</strong></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run serve:shell</code></pre></div><h3>Access the Application</h3>
+<p>Open your browser to: <strong><a href="http://localhost:4200">http://localhost:4200</a></strong></p>
+<h2>📋 What to Expect</h2>
+<h3>Home Page</h3>
+<ul>
+<li>Comprehensive explanation of version management architecture</li>
+<li>Central dependency management benefits</li>
+<li>Key benefits overview</li>
+<li>Links to both MFEs with version indicators</li>
+</ul>
+<h3>MFE1 (<a href="http://localhost:4200/mfe1">http://localhost:4200/mfe1</a>)</h3>
+<ul>
+<li>Displays <strong>blue badge</strong> showing v1.0.0</li>
+<li>Demonstrates independent version usage</li>
+<li>Uses shell&#39;s Angular, Bootstrap, and RxJS</li>
+</ul>
+<h3>MFE2 (<a href="http://localhost:4200/mfe2">http://localhost:4200/mfe2</a>)</h3>
+<ul>
+<li>Displays <strong>green badge</strong> showing v2.0.0</li>
+<li>Demonstrates independent version usage</li>
+<li>Uses shell&#39;s Angular, Bootstrap, and RxJS</li>
+</ul>
+<h3>Version Override</h3>
+<p>When shell&#39;s override is active, both MFEs will show <strong>red badges</strong> (v3.0.0), demonstrating central control.</p>
+<h2>📚 Documentation</h2>
+<h3>Component Library Documentation 🎨 NEW</h3>
+<ul>
+<li><strong><a href="http://127.0.0.1:8080">Compodoc Documentation</a></strong> - Live API documentation (run <code>npm run docs:serve</code>)</li>
+<li><strong><a href="./COMPODOC_SETUP_COMPLETE.md">COMPODOC_SETUP_COMPLETE.md</a></strong> - Compodoc setup summary ⭐ NEW</li>
+<li><strong><a href="./COMPODOC_DOCUMENTATION.md">COMPODOC_DOCUMENTATION.md</a></strong> - Complete Compodoc guide ⭐ NEW</li>
+</ul>
+<h3>Architecture &amp; Implementation</h3>
+<ul>
+<li><strong><a href="./VERSION_MANAGEMENT.md">VERSION_MANAGEMENT.md</a></strong> - Shared library version management</li>
+<li><strong><a href="./CENTRAL_DEPENDENCY_MANAGEMENT.md">CENTRAL_DEPENDENCY_MANAGEMENT.md</a></strong> - Central dependency control</li>
+<li><strong><a href="./SYNCFUSION_INTEGRATION.md">SYNCFUSION_INTEGRATION.md</a></strong> - Syncfusion Grid integration ⭐ NEW</li>
+<li><strong><a href="./IMPLEMENTATION_SUMMARY.md">IMPLEMENTATION_SUMMARY.md</a></strong> - Complete implementation details</li>
+<li><strong><a href="./NAVIGATION_IMPLEMENTATION.md">NAVIGATION_IMPLEMENTATION.md</a></strong> - Navigation setup and routing</li>
+<li><strong><a href="./TODO.md">TODO.md</a></strong> - Implementation checklist and status</li>
+<li><strong><a href="./TEST_REPORT.md">TEST_REPORT.md</a></strong> - Testing results and procedures</li>
+</ul>
+<h2>🔧 Technical Details</h2>
+<h3>Technology Stack</h3>
+<ul>
+<li><strong>Angular</strong>: v20.0.0</li>
+<li><strong>Native Federation</strong>: @angular-architects/native-federation v21.1.0</li>
+<li><strong>Bootstrap</strong>: v5.3.8</li>
+<li><strong>TypeScript</strong>: v5.8.2</li>
+</ul>
+<h3>Project Structure</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">shared-hub-poc/
+├── apps/
+│   ├── shell/          # Host application (port 4200)
+│   ├── mfe1/           # Microfrontend 1 (port 4201)
+│   └── mfe2/           # Microfrontend 2 (port 4202)
+├── libs/
+│   └── shared-ui/      # Shared UI library
+├── artifacts/          # Built library versions
+│   ├── shared-ui-1.0.0.tgz
+│   ├── shared-ui-2.0.0.tgz
+│   └── shared-ui-3.0.0.tgz
+└── scripts/            # Build and setup scripts</code></pre></div><h3>Federation Configuration</h3>
+<h4>Shell (Central Control)</h4>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">shared: {
+  // shareAll() shares ALL dependencies with singleton: true
+  ...shareAll({ singleton: true, strictVersion: true, requiredVersion: &#39;auto&#39; }),
+  
+  // Explicitly managed dependencies
+  &#39;&#64;angular/core&#39;: { singleton: true, strictVersion: true, eager: true },
+  &#39;&#64;angular/common&#39;: { singleton: true, strictVersion: true, eager: true },
+  &#39;bootstrap&#39;: { singleton: true, strictVersion: false, eager: true },
+  &#39;rxjs&#39;: { singleton: true, strictVersion: true, eager: true },
+  
+  // Custom library version override
+  &#39;shared-ui-v3&#39;: { singleton: true, eager: true },
+}</code></pre></div><h4>MFE1 (uses v1.0.0)</h4>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">shared: {
+  ...shareAll({ singleton: true, strictVersion: true, requiredVersion: &#39;auto&#39; }),
+  &#39;shared-ui-v1&#39;: { singleton: false, strictVersion: false },
+}</code></pre></div><h4>MFE2 (uses v2.0.0)</h4>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">shared: {
+  ...shareAll({ singleton: true, strictVersion: true, requiredVersion: &#39;auto&#39; }),
+  &#39;shared-ui-v2&#39;: { singleton: false, strictVersion: false },
+}</code></pre></div><h2>🎓 Use Cases</h2>
+<h3>Use Case 1: Security Patch in Angular</h3>
+<p>A critical vulnerability is found in Angular 20.0.0.</p>
+<p><strong>Traditional Approach</strong>: Update each MFE separately (hours/days)
+<strong>Central Management</strong>: Update once in shell (minutes), all MFEs protected immediately!</p>
+<h3>Use Case 2: Bootstrap Upgrade</h3>
+<p>Bootstrap 5.4.0 released with new components.</p>
+<p><strong>Traditional Approach</strong>: Each team updates independently, inconsistent UI
+<strong>Central Management</strong>: Update in shell, all MFEs get new components, consistent UI!</p>
+<h3>Use Case 3: Custom Library Version Override</h3>
+<p>Critical bug in shared-ui v1 and v2.</p>
+<p><strong>Solution</strong>: Shell enforces v3, all MFEs use patched version immediately!</p>
+<h2>🔨 Building Shared Library Versions</h2>
+<p>To rebuild all versions of the shared-ui library:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">cd shared-hub-poc
+./scripts/build-all-shared-ui-versions.sh</code></pre></div><p>This script:</p>
+<ol>
+<li>Updates version constant for each version</li>
+<li>Builds the library</li>
+<li>Patches package.json with correct version</li>
+<li>Packs into .tgz files</li>
+<li>Installs as npm aliases</li>
+</ol>
+<h2>🧪 Testing</h2>
+<h3>Manual Testing Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Start all three applications</li>
+<li><input disabled="" type="checkbox"> Navigate to home page - verify version info and central dependency info displays</li>
+<li><input disabled="" type="checkbox"> Click MFE1 - verify blue badge (v1.0.0)</li>
+<li><input disabled="" type="checkbox"> Click MFE2 - verify green badge (v2.0.0)</li>
+<li><input disabled="" type="checkbox"> Check browser console - verify no duplicate Angular/Bootstrap loads</li>
+<li><input disabled="" type="checkbox"> Verify navigation works correctly</li>
+<li><input disabled="" type="checkbox"> Test responsive design on mobile</li>
+</ul>
+<h3>Testing Central Dependency Management</h3>
+<ol>
+<li>Open browser DevTools → Network tab</li>
+<li>Start all applications</li>
+<li>Navigate to MFE1</li>
+<li>Verify Angular/Bootstrap are NOT loaded again (cached from shell)</li>
+<li>Navigate to MFE2</li>
+<li>Verify Angular/Bootstrap are NOT loaded again (reused)</li>
+</ol>
+<h2>💡 Benefits</h2>
+<h3>For Development Teams</h3>
+<ul>
+<li>✅ Update dependencies independently (custom libraries)</li>
+<li>✅ Don&#39;t worry about Angular/Bootstrap versions</li>
+<li>✅ Smaller bundle sizes to deploy</li>
+<li>✅ Faster build times</li>
+</ul>
+<h3>For Platform Teams</h3>
+<ul>
+<li>✅ Update Angular/Bootstrap once for all MFEs</li>
+<li>✅ Force critical updates immediately</li>
+<li>✅ Ensure version consistency</li>
+<li>✅ Reduce total bundle size by 67%</li>
+</ul>
+<h3>For the Organization</h3>
+<ul>
+<li>✅ 92% faster security patch deployment</li>
+<li>✅ 80% faster page load times</li>
+<li>✅ Reduced infrastructure costs (smaller bundles)</li>
+<li>✅ Better user experience</li>
+</ul>
+<h2>🐛 Troubleshooting</h2>
+<h3>Issue: MFE shows wrong version</h3>
+<p><strong>Solution</strong>: Check federation config and import paths</p>
+<h3>Issue: Version override not working</h3>
+<p><strong>Solution</strong>: Verify <code>singleton: true</code> and <code>eager: true</code> in shell config</p>
+<h3>Issue: Dependencies loading twice</h3>
+<p><strong>Solution</strong>: Ensure <code>singleton: true</code> in shell&#39;s federation config</p>
+<h3>Issue: Build errors</h3>
+<p><strong>Solution</strong>: Clear node_modules and reinstall dependencies</p>
+<h2>🤝 Contributing</h2>
+<p>This is a demonstration project. Feel free to:</p>
+<ul>
+<li>Experiment with different configurations</li>
+<li>Add more MFEs</li>
+<li>Create additional shared library versions</li>
+<li>Add more centrally managed dependencies (Syncfusion, PrimeNG, etc.)</li>
+</ul>
+<h2>📝 License</h2>
+<p>This project is for demonstration purposes.</p>
+<h2>🙏 Acknowledgments</h2>
+<ul>
+<li>Angular Team for Native Federation</li>
+<li>Manfred Steyer for Module Federation concepts</li>
+<li>Bootstrap for UI components</li>
+</ul>
+<h2>📞 Support</h2>
+<p>For questions or issues:</p>
+<ol>
+<li>Check CENTRAL_DEPENDENCY_MANAGEMENT.md for dependency management details</li>
+<li>Check VERSION_MANAGEMENT.md for version management details</li>
+<li>Review TEST_REPORT.md for common issues</li>
+<li>Examine the federation configs for each application</li>
+</ol>
+<h2>🎯 Next Steps</h2>
+<p>After exploring this demo, consider:</p>
+<ol>
+<li>Implementing central dependency management in your projects</li>
+<li>Adding more centrally managed dependencies (Syncfusion, Material, etc.)</li>
+<li>Creating automated dependency update workflows</li>
+<li>Building a dependency analytics dashboard</li>
+<li>Implementing dynamic override controls</li>
+</ol>
+<hr>
+<p><strong>Built with ❤️ to demonstrate real-world microfrontend version and dependency management</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'readme';
+            var COMPODOC_CURRENT_PAGE_URL = 'components-overview.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

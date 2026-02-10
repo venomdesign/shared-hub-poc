@@ -9,7 +9,11 @@
     "test": "ng test",
     "serve:shell": "ng serve shell --port 4200",
     "serve:mfe1": "ng serve mfe1 --port 4201",
-    "serve:mfe2": "ng serve mfe2 --port 4202"
+    "serve:mfe2": "ng serve mfe2 --port 4202",
+    "docs:generate": "compodoc -p libs/shared-ui/tsconfig.lib.json",
+    "docs:serve": "compodoc -p libs/shared-ui/tsconfig.lib.json -s -w --port 8080",
+    "docs:build": "compodoc -p libs/shared-ui/tsconfig.lib.json -d docs/compodoc",
+    "docs:serve-static": "compodoc -p libs/shared-ui/tsconfig.lib.json -s --port 8080"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +43,7 @@
     "@angular/build": "^20.3.15",
     "@angular/cli": "^20.0.2",
     "@angular/compiler-cli": "^20.0.0",
+    "@compodoc/compodoc": "^1.2.1",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.7.0",
     "karma": "~6.4.0",

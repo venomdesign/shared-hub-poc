@@ -128,8 +128,15 @@ When shell's override is active, both MFEs will show **red badges** (v3.0.0), de
 
 ## 📚 Documentation
 
+### Component Library Documentation 🎨 NEW
+- **[Compodoc Documentation](http://127.0.0.1:8080)** - Live API documentation (run `npm run docs:serve`)
+- **[COMPODOC_SETUP_COMPLETE.md](./COMPODOC_SETUP_COMPLETE.md)** - Compodoc setup summary ⭐ NEW
+- **[COMPODOC_DOCUMENTATION.md](./COMPODOC_DOCUMENTATION.md)** - Complete Compodoc guide ⭐ NEW
+
+### Architecture & Implementation
 - **[VERSION_MANAGEMENT.md](./VERSION_MANAGEMENT.md)** - Shared library version management
-- **[CENTRAL_DEPENDENCY_MANAGEMENT.md](./CENTRAL_DEPENDENCY_MANAGEMENT.md)** - Central dependency control ⭐ NEW
+- **[CENTRAL_DEPENDENCY_MANAGEMENT.md](./CENTRAL_DEPENDENCY_MANAGEMENT.md)** - Central dependency control
+- **[SYNCFUSION_INTEGRATION.md](./SYNCFUSION_INTEGRATION.md)** - Syncfusion Grid integration ⭐ NEW
 - **[IMPLEMENTATION_SUMMARY.md](./IMPLEMENTATION_SUMMARY.md)** - Complete implementation details
 - **[NAVIGATION_IMPLEMENTATION.md](./NAVIGATION_IMPLEMENTATION.md)** - Navigation setup and routing
 - **[TODO.md](./TODO.md)** - Implementation checklist and status

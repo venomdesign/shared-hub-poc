@@ -1,0 +1,393 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Shared UI Component Library</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Shared UI Component Library</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content additional-page">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>Components Overview</h1>
+<p>This page provides an overview of all available components in the Shared UI library.</p>
+<h2>Badge Component</h2>
+<p><strong>Location:</strong> <code>libs/shared-ui/src/lib/badge/ui-badge.component.ts</code></p>
+<h3>Description</h3>
+<p>The Badge component displays a version badge with automatic color coding based on the library version. It reads the version directly from the package.json file, ensuring the displayed version always matches the installed package.</p>
+<h3>Features</h3>
+<ul>
+<li>✅ Automatic version detection from package.json</li>
+<li>✅ Color-coded badges based on version:<ul>
+<li><strong>v1.0.0</strong>: Blue (<code>text-bg-primary</code>)</li>
+<li><strong>v2.0.0</strong>: Green (<code>text-bg-success</code>)</li>
+<li><strong>v3.0.0</strong>: Red (<code>text-bg-danger</code>)</li>
+</ul>
+</li>
+<li>✅ Customizable label text</li>
+<li>✅ Bootstrap 5 styling</li>
+<li>✅ Standalone component (no module required)</li>
+</ul>
+<h3>Usage</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { UiBadgeComponent } from &#39;shared-ui-v1&#39;;
+
+&#64;Component({
+  selector: &#39;app-example&#39;,
+  standalone: true,
+  imports: [UiBadgeComponent],
+  template: `
+    &lt;shared-ui-badge label=&quot;My App&quot;&gt;&lt;/shared-ui-badge&gt;
+  `
+})
+export class ExampleComponent {}</code></pre></div><h3>Inputs</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Input</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>&#39;UI Kit&#39;</code></td>
+<td>The text label to display before the version</td>
+</tr>
+</tbody>
+</table>
+<h3>Styling</h3>
+<p>The component uses Bootstrap 5 badge classes:</p>
+<ul>
+<li><code>badge</code> - Base badge styling</li>
+<li><code>text-bg-primary</code> - Blue background (v1.0.0)</li>
+<li><code>text-bg-success</code> - Green background (v2.0.0)</li>
+<li><code>text-bg-danger</code> - Red background (v3.0.0)</li>
+</ul>
+<h3>Example Output</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;!-- For shared-ui v1.0.0 --&gt;
+&lt;span class=&quot;badge text-bg-primary&quot;&gt;My App v1.0.0&lt;/span&gt;
+
+&lt;!-- For shared-ui v2.0.0 --&gt;
+&lt;span class=&quot;badge text-bg-success&quot;&gt;My App v2.0.0&lt;/span&gt;
+
+&lt;!-- For shared-ui v3.0.0 --&gt;
+&lt;span class=&quot;badge text-bg-danger&quot;&gt;My App v3.0.0&lt;/span&gt;</code></pre></div><h2>Syncfusion Grid</h2>
+<p><strong>Package:</strong> <code>@syncfusion/ej2-angular-grids@29.2.11</code></p>
+<h3>Description</h3>
+<p>The library includes Syncfusion EJ2 Grid with centralized dependency management through the shell application. This ensures all microfrontends use the same grid version without bundling it multiple times.</p>
+<h3>Features</h3>
+<ul>
+<li>✅ Paging</li>
+<li>✅ Sorting</li>
+<li>✅ Filtering</li>
+<li>✅ Grouping</li>
+<li>✅ Excel export</li>
+<li>✅ PDF export</li>
+<li>✅ Bootstrap 5 theme</li>
+<li>✅ Centrally managed (loaded from shell)</li>
+</ul>
+<h3>Usage</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { GridModule, PageService, SortService, FilterService } from &#39;&#64;syncfusion/ej2-angular-grids&#39;;
+
+&#64;Component({
+  selector: &#39;app-grid-example&#39;,
+  standalone: true,
+  imports: [GridModule],
+  providers: [PageService, SortService, FilterService],
+  template: `
+    &lt;ejs-grid 
+      [dataSource]=&#39;data&#39; 
+      [allowPaging]=&#39;true&#39; 
+      [allowSorting]=&#39;true&#39;
+      [allowFiltering]=&#39;true&#39;
+      [pageSettings]=&#39;pageSettings&#39;&gt;
+      &lt;e-columns&gt;
+        &lt;e-column field=&#39;OrderID&#39; headerText=&#39;Order ID&#39; width=&#39;120&#39;&gt;&lt;/e-column&gt;
+        &lt;e-column field=&#39;CustomerName&#39; headerText=&#39;Customer Name&#39; width=&#39;150&#39;&gt;&lt;/e-column&gt;
+        &lt;e-column field=&#39;OrderDate&#39; headerText=&#39;Order Date&#39; width=&#39;130&#39; format=&#39;yMd&#39;&gt;&lt;/e-column&gt;
+        &lt;e-column field=&#39;Freight&#39; headerText=&#39;Freight&#39; width=&#39;120&#39; format=&#39;C2&#39;&gt;&lt;/e-column&gt;
+      &lt;/e-columns&gt;
+    &lt;/ejs-grid&gt;
+  `
+})
+export class GridExampleComponent {
+  public data: Object[] = [
+    { OrderID: 10248, CustomerName: &#39;Paul Henriot&#39;, OrderDate: new Date(8364186e5), Freight: 32.38 },
+    { OrderID: 10249, CustomerName: &#39;Karin Josephs&#39;, OrderDate: new Date(836505e6), Freight: 11.61 },
+    // ... more data
+  ];
+  
+  public pageSettings: Object = { pageSize: 10 };
+}</code></pre></div><h3>Theme</h3>
+<p>The grid uses the Bootstrap 5 theme, which is configured in <code>angular.json</code>:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-json">&quot;styles&quot;: [
+  &quot;node_modules/&#64;syncfusion/ej2-base/styles/bootstrap5.css&quot;,
+  &quot;node_modules/&#64;syncfusion/ej2-grids/styles/bootstrap5.css&quot;
+]</code></pre></div><h3>Licensing</h3>
+<p><strong>Important:</strong> Syncfusion requires a license for production use.</p>
+<ul>
+<li><strong>Development</strong>: Free with license banner</li>
+<li><strong>Production</strong>: Requires license key</li>
+</ul>
+<p>Register your license in the shell&#39;s <code>main.ts</code>:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { registerLicense } from &#39;&#64;syncfusion/ej2-base&#39;;
+
+registerLicense(&#39;YOUR_LICENSE_KEY_HERE&#39;);</code></pre></div><p>Get a free community license: <a href="https://www.syncfusion.com/products/communitylicense">https://www.syncfusion.com/products/communitylicense</a></p>
+<h2>Future Components</h2>
+<p>This section will be updated as new components are added to the library.</p>
+<h3>Planned Components</h3>
+<ul>
+<li>Button component</li>
+<li>Input component</li>
+<li>Card component</li>
+<li>Modal component</li>
+<li>Navigation component</li>
+</ul>
+<h2>Component Development Guidelines</h2>
+<p>When adding new components to the library:</p>
+<ol>
+<li><strong>Create in <code>libs/shared-ui/src/lib/</code></strong></li>
+<li><strong>Use standalone components</strong> (no modules)</li>
+<li><strong>Export from <code>public-api.ts</code></strong></li>
+<li><strong>Add JSDoc comments</strong> for Compodoc</li>
+<li><strong>Include usage examples</strong> in comments</li>
+<li><strong>Follow Bootstrap 5 styling</strong> conventions</li>
+<li><strong>Make components version-aware</strong> if needed</li>
+<li><strong>Test in multiple MFEs</strong> before releasing</li>
+</ol>
+<h3>Example Component Template</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { Component, Input } from &#39;&#64;angular/core&#39;;
+import { CommonModule } from &#39;&#64;angular/common&#39;;
+
+/**
+ * A reusable button component with Bootstrap 5 styling.
+ * 
+ * &#64;example
+ * ```html
+ * &lt;ui-button label=&quot;Click Me&quot; variant=&quot;primary&quot;&gt;&lt;/ui-button&gt;
+ * ```
+ */
+&#64;Component({
+  selector: &#39;ui-button&#39;,
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    &lt;button [class]=&quot;buttonClass&quot; (click)=&quot;handleClick()&quot;&gt;
+      {{ label }}
+    &lt;/button&gt;
+  `,
+  styles: [`
+    :host { display: inline-block; }
+  `]
+})
+export class UiButtonComponent {
+  /**
+   * The button label text
+   */
+  &#64;Input() label = &#39;Button&#39;;
+  
+  /**
+   * The button variant (primary, secondary, success, danger, etc.)
+   */
+  &#64;Input() variant: &#39;primary&#39; | &#39;secondary&#39; | &#39;success&#39; | &#39;danger&#39; = &#39;primary&#39;;
+  
+  get buttonClass(): string {
+    return `btn btn-${this.variant}`;
+  }
+  
+  handleClick(): void {
+    // Handle click
+  }
+}</code></pre></div><h2>See Also</h2>
+<ul>
+<li><a href="./getting-started.md">Getting Started</a></li>
+<li><a href="../index.html">API Documentation</a> (Generated by Compodoc)</li>
+<li><a href="../SYNCFUSION_INTEGRATION.md">Syncfusion Integration Guide</a></li>
+</ul>
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
+            var COMPODOC_CURRENT_PAGE_URL = 'components-overview.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
