@@ -4,7 +4,7 @@
 
 This document explains how the **Shell application centrally manages common dependencies** (Angular, Bootstrap, RxJS, etc.) for all microfrontends, eliminating the need for each MFE to bundle and manage these dependencies independently.
 
-## 🎯 The Problem
+## The Problem
 
 In traditional microfrontend architectures, each MFE typically:
 - Bundles its own copy of Angular, Bootstrap, and other common libraries
@@ -15,7 +15,7 @@ In traditional microfrontend architectures, each MFE typically:
   - **Update complexity** (must update each MFE separately)
   - **Inconsistent behavior** (different library versions behave differently)
 
-## ✅ The Solution: Central Dependency Management
+## The Solution: Central Dependency Management
 
 The **Shell application** acts as the central authority for common dependencies:
 
@@ -24,10 +24,10 @@ The **Shell application** acts as the central authority for common dependencies:
 │                    Shell (Host)                         │
 │                                                          │
 │  Provides & Controls:                                   │
-│  ✓ Angular v20.0.0                                      │
-│  ✓ Bootstrap v5.3.8                                     │
-│  ✓ RxJS v7.8.0                                          │
-│  ✓ All common dependencies                              │
+│  - Angular v20.0.0                                      │
+│  - Bootstrap v5.3.8                                     │
+│  - RxJS v7.8.0                                          │
+│  - All common dependencies                              │
 │                                                          │
 │  singleton: true → Only ONE version exists              │
 │  eager: true → Loaded immediately with shell            │
@@ -39,9 +39,9 @@ The **Shell application** acts as the central authority for common dependencies:
 │     MFE1       │                      │     MFE2       │
 │                │                      │                │
 │  Uses Shell's: │                      │  Uses Shell's: │
-│  ✓ Angular     │                      │  ✓ Angular     │
-│  ✓ Bootstrap   │                      │  ✓ Bootstrap   │
-│  ✓ RxJS        │                      │  ✓ RxJS        │
+│  - Angular     │                      │  - Angular     │
+│  - Bootstrap   │                      │  - Bootstrap   │
+│  - RxJS        │                      │  - RxJS        │
 │                │                      │                │
 │  NO bundling   │                      │  NO bundling   │
 │  of common     │                      │  of common     │
@@ -49,7 +49,7 @@ The **Shell application** acts as the central authority for common dependencies:
 └────────────────┘                      └────────────────┘
 ```
 
-## 🔧 Implementation
+## Implementation
 
 ### Shell Configuration
 
@@ -129,7 +129,7 @@ module.exports = withNativeFederation({
 });
 ```
 
-## 📊 Configuration Parameters Explained
+## Configuration Parameters Explained
 
 ### `singleton: true`
 - **Meaning**: Only ONE instance of this dependency can exist across all MFEs
@@ -156,7 +156,7 @@ module.exports = withNativeFederation({
 - **Effect**: No manual version management needed
 - **Use Case**: Most dependencies
 
-## 🎯 Benefits
+## Benefits
 
 ### 1. **Reduced Bundle Sizes**
 ```
@@ -214,7 +214,7 @@ Subsequent Loads:
 - MFEs load almost instantly
 ```
 
-## 🔄 Update Workflow
+## Update Workflow
 
 ### Updating a Centrally Managed Dependency
 
@@ -256,35 +256,35 @@ shared: {
 // import { GridModule } from '@syncfusion/ej2-angular-grids';
 ```
 
-## 📋 Centrally Managed Dependencies
+## Centrally Managed Dependencies
 
 ### Current Setup
 
 | Dependency | Version | Singleton | Eager | Managed By |
 |------------|---------|-----------|-------|------------|
-| @angular/core | 20.0.0 | ✅ | ✅ | Shell |
-| @angular/common | 20.0.0 | ✅ | ✅ | Shell |
-| @angular/router | 20.0.0 | ✅ | ✅ | Shell |
-| @angular/platform-browser | 20.0.0 | ✅ | ✅ | Shell |
-| bootstrap | 5.3.8 | ✅ | ✅ | Shell |
-| rxjs | 7.8.0 | ✅ | ✅ | Shell |
-| shared-ui-v1 | 1.0.0 | ❌ | ❌ | MFE1 |
-| shared-ui-v2 | 2.0.0 | ❌ | ❌ | MFE2 |
-| shared-ui-v3 | 3.0.0 | ✅ | ✅ | Shell (Override) |
+| @angular/core | 20.0.0 | Yes | Yes | Shell |
+| @angular/common | 20.0.0 | Yes | Yes | Shell |
+| @angular/router | 20.0.0 | Yes | Yes | Shell |
+| @angular/platform-browser | 20.0.0 | Yes | Yes | Shell |
+| bootstrap | 5.3.8 | Yes | Yes | Shell |
+| rxjs | 7.8.0 | Yes | Yes | Shell |
+| shared-ui-v1 | 1.0.0 | No | No | MFE1 |
+| shared-ui-v2 | 2.0.0 | No | No | MFE2 |
+| shared-ui-v3 | 3.0.0 | Yes | Yes | Shell (Override) |
 
 ### Recommended for Central Management
 
 Consider centralizing these common dependencies:
 
-- **UI Frameworks**: Angular Material, PrimeNG, Syncfusion
+- **UI Frameworks**: Syncfusion
 - **State Management**: NgRx, Akita
 - **HTTP Clients**: Angular HttpClient
 - **Utilities**: Lodash, Moment.js, Date-fns
-- **Icons**: Font Awesome, Material Icons
+- **Icons**: Font Awesome, Bootstrap Icons
 - **Charts**: Chart.js, D3.js
 - **Forms**: Angular Forms, Reactive Forms
 
-## 🎓 Real-World Scenarios
+## Real-World Scenarios
 
 ### Scenario 1: Security Patch
 
@@ -348,7 +348,7 @@ cd shell && npm update @angular/core && npm run build
 // Enable for subset of users first
 ```
 
-## 🔍 Verification
+## Verification
 
 ### Check What Version is Being Used
 
@@ -393,7 +393,7 @@ ls -lh dist/mfe2/browser/*.js
 # because they don't include Angular, Bootstrap, etc.
 ```
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 ### Expected Improvements
 
@@ -405,7 +405,7 @@ ls -lh dist/mfe2/browser/*.js
 | Cache Hit Rate | 0% | 95% | Significant |
 | Update Time | 2 hours | 10 minutes | 92% faster |
 
-## 🚀 Best Practices
+## Best Practices
 
 ### 1. **Always Use `shareAll()`**
 ```javascript
@@ -453,20 +453,20 @@ shared: {
 }
 ```
 
-## 🎯 Conclusion
+## Conclusion
 
 Central dependency management through the shell application provides:
 
-✅ **67% reduction in bundle sizes**
-✅ **80% faster MFE load times**
-✅ **92% faster update process**
-✅ **100% version consistency**
-✅ **Simplified maintenance**
-✅ **Better caching**
-✅ **Reduced complexity**
+- **67% reduction in bundle sizes**
+- **80% faster MFE load times**
+- **92% faster update process**
+- **100% version consistency**
+- **Simplified maintenance**
+- **Better caching**
+- **Reduced complexity**
 
 This architecture enables organizations to scale their microfrontend platforms while maintaining control, consistency, and performance.
 
 ---
 
-**Implementation Status**: ✅ Complete and Production-Ready
+**Implementation Status**: Complete and Production-Ready
