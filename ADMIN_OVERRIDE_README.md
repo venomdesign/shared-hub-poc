@@ -4,10 +4,10 @@
 
 The shell application has the ability to **force all microfrontends to use a specific version** of the shared-ui library, regardless of their individual preferences. This is critical for:
 
-- 🚨 **Security patches** - Deploy fixes immediately across all MFEs
-- 🐛 **Critical bug fixes** - Instant rollout without waiting for MFE teams
-- 🔄 **Breaking changes** - Coordinate major version upgrades
-- 📊 **Consistency** - Ensure uniform behavior across the platform
+- **Security patches** - Deploy fixes immediately across all MFEs
+- **Critical bug fixes** - Instant rollout without waiting for MFE teams
+- **Breaking changes** - Coordinate major version upgrades
+- **Consistency** - Ensure uniform behavior across the platform
 
 ## Quick Start
 
@@ -116,17 +116,17 @@ Now when MFE1 imports from `shared-ui-v1`, it gets the v3.0.0 code!
 
 **Example output:**
 ```
-🔄 Enabling V3 Override...
+Enabling V3 Override...
 
-✅ V3 override ENABLED
-📦 Package aliases updated:
+V3 override ENABLED
+Package aliases updated:
    shared-ui-v1 → artifacts/shared-ui-3.0.0.tgz
    shared-ui-v2 → artifacts/shared-ui-3.0.0.tgz
    shared-ui-v3 → artifacts/shared-ui-3.0.0.tgz
 
-🔄 Running npm install...
-⚠️  After install completes, restart all apps
-🎯 Expected result: All MFEs will show RED badges (v3.0.0)
+Running npm install...
+After install completes, restart all apps
+Expected result: All MFEs will show RED badges (v3.0.0)
 ```
 
 ### `npm run override:disable`
@@ -143,17 +143,17 @@ Now when MFE1 imports from `shared-ui-v1`, it gets the v3.0.0 code!
 
 **Example output:**
 ```
-🔄 Disabling V3 Override...
+Disabling V3 Override...
 
-✅ V3 override DISABLED
-📦 Package aliases restored:
+V3 override DISABLED
+Package aliases restored:
    shared-ui-v1 → artifacts/shared-ui-1.0.0.tgz
    shared-ui-v2 → artifacts/shared-ui-2.0.0.tgz
    shared-ui-v3 → artifacts/shared-ui-3.0.0.tgz
 
-🔄 Running npm install...
-⚠️  After install completes, restart all apps
-🎯 Expected result:
+Running npm install...
+After install completes, restart all apps
+Expected result:
    - MFE1 will show BLUE badge (v1.0.0)
    - MFE2 will show GREEN badge (v2.0.0)
 ```
@@ -195,9 +195,9 @@ npm run override:disable
 ```
 
 **Result:**
-- ✅ Instant security patch across entire platform
-- ✅ No MFE code changes required
-- ✅ Single command deployment
+- Instant security patch across entire platform
+- No MFE code changes required
+- Single command deployment
 
 ### Scenario 2: Critical Bug Fix
 
@@ -288,7 +288,7 @@ npm run serve:mfe2    # Terminal 3
 
 ## Important Notes
 
-### ⚠️ Restart Required
+### Restart Required
 
 After enabling or disabling the override, you **MUST restart all applications**:
 - Shell
@@ -299,14 +299,14 @@ The override only takes effect after:
 1. `npm install` completes (updates node_modules)
 2. Applications are restarted (reload new modules)
 
-### ⚠️ Not Runtime-Toggleable
+### Not Runtime-Toggleable
 
 This is a **deployment-time configuration**, not a runtime toggle. You cannot switch between override enabled/disabled without:
 1. Running the script
 2. Running npm install
 3. Restarting all apps
 
-### ⚠️ Production Deployment
+### Production Deployment
 
 For production, you would:
 1. Run `npm run override:enable` on your build server
@@ -368,17 +368,17 @@ import('shared-ui-v3').then(m => console.log('v3 version:', m.SHARED_UI_VERSION)
 
 ### What You Can Do
 
-✅ **Force all MFEs to use v3** with one command
-✅ **Restore version independence** with one command
-✅ **Check current status** anytime
-✅ **No MFE code changes required**
-✅ **Instant deployment** (after restart)
+- **Force all MFEs to use v3** with one command
+- **Restore version independence** with one command
+- **Check current status** anytime
+- **No MFE code changes required**
+- **Instant deployment** (after restart)
 
 ### What You Cannot Do
 
-❌ Toggle at runtime without restart
-❌ Override individual MFEs (it's all or nothing)
-❌ Use different override versions for different MFEs
+- Toggle at runtime without restart
+- Override individual MFEs (it's all or nothing)
+- Use different override versions for different MFEs
 
 ### Current Status
 

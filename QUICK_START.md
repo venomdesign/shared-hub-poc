@@ -1,16 +1,16 @@
-# 🚀 Quick Start - See the Badges NOW!
+# Quick Start - See the Badges NOW!
 
-## ✅ All Apps Are Running!
+## All Apps Are Running!
 
-- ✅ MFE1: http://localhost:4201
-- ✅ MFE2: http://localhost:4202  
-- ✅ Shell: http://localhost:4200
+- MFE1: http://localhost:4201
+- MFE2: http://localhost:4202  
+- Shell: http://localhost:4200
 
-## 👀 Open Your Browser
+## Open Your Browser
 
 **Main URL**: http://localhost:4200
 
-## 🎯 What You'll See
+## What You'll See
 
 ### 1. Home Page (http://localhost:4200)
 - Architecture explanation
@@ -28,7 +28,7 @@
 - **Look for**: 🟢 **GREEN BADGE** in top-right corner
 - Badge text: "Shared UI" with version "2.0.0"
 
-## 🔴 Want to See the Override? (Red Badge)
+## Want to See the Override? (Red Badge) 🔴
 
 ### Quick Method:
 
@@ -64,9 +64,9 @@
    ```
 
 6. **Refresh browser** and click MFE1 or MFE2
-7. **Both now show 🔴 RED BADGES** with version "3.0.0"!
+7. **Both now show RED BADGES** 🔴 with version "3.0.0"!
 
-## 🐛 Not Seeing Badges?
+## Not Seeing Badges?
 
 ### Check 1: Open Browser Console (F12)
 - Look for any red error messages
@@ -84,7 +84,7 @@ Should show all three versions installed.
 - Press: **Ctrl + Shift + R** (Windows)
 - Or: **Cmd + Shift + R** (Mac)
 
-## 📸 What the Badges Look Like
+## What the Badges Look Like
 
 ```
 ┌─────────────────────────────────┐
@@ -97,7 +97,7 @@ Should show all three versions installed.
 
 The badge is a Bootstrap badge component in the top-right corner of the card.
 
-## 🎨 Badge Colors
+## Badge Colors
 
 | Version | Color | What It Means |
 |---------|-------|---------------|
@@ -105,7 +105,7 @@ The badge is a Bootstrap badge component in the top-right corner of the card.
 | v2.0.0 | 🟢 Green | MFE2's preferred version |
 | v3.0.0 | 🔴 Red | Shell's override version |
 
-## ⚡ Quick Commands
+## Quick Commands
 
 ```bash
 # Open browser
@@ -120,7 +120,7 @@ netstat -ano | findstr "4200 4201 4202"
 npm run serve:shell
 ```
 
-## 📚 Full Documentation
+## Full Documentation
 
 - **VISUAL_DEMO_GUIDE.md** - Complete step-by-step guide
 - **VERSION_MANAGEMENT.md** - Technical architecture details
@@ -128,4 +128,4 @@ npm run serve:shell
 
 ---
 
-**🎉 Enjoy the demo! The badges should be clearly visible in the top-right corner of each MFE page.**
+**Enjoy the demo! The badges should be clearly visible in the top-right corner of each MFE page.**

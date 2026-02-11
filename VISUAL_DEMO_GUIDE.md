@@ -1,8 +1,8 @@
-# 🎨 Visual Demo Guide - How to See the Badges and Use Override
+# Visual Demo Guide - How to See the Badges and Use Override
 
 This guide shows you exactly how to see the version badges and demonstrates the override functionality.
 
-## 🚀 Step 1: Start All Applications
+## Step 1: Start All Applications
 
 You need three terminal windows running simultaneously:
 
@@ -27,7 +27,7 @@ npm run serve:shell
 ```
 Wait for: `✔ Browser application bundle generation complete.`
 
-## 👀 Step 2: View the Application
+## Step 2: View the Application
 
 Open your browser to: **http://localhost:4200**
 
@@ -42,7 +42,7 @@ Open your browser to: **http://localhost:4200**
 5. **Version Override** section explaining v3.0.0
 6. **Central Dependency Management** section showing Angular, Bootstrap, RxJS
 
-## 🔵 Step 3: See MFE1 Badge (Blue - v1.0.0)
+## Step 3: See MFE1 Badge (Blue - v1.0.0) 🔵
 
 1. Click the **"Open MFE1"** button on the home page
 2. URL changes to: `http://localhost:4200/mfe1`
@@ -57,7 +57,7 @@ Open your browser to: **http://localhost:4200**
 - Verify MFE1 is running on port 4201
 - Check that shared-ui-v1 is installed: `npm list shared-ui-v1`
 
-## 🟢 Step 4: See MFE2 Badge (Green - v2.0.0)
+## Step 4: See MFE2 Badge (Green - v2.0.0) 🟢
 
 1. Click **"Home"** in the navigation bar
 2. Click the **"Open MFE2"** button
@@ -68,7 +68,7 @@ Open your browser to: **http://localhost:4200**
    - Text: "This is MFE2 using shared-ui v2.0.0"
    - Info box explaining version independence
 
-## 🔴 Step 5: Enable Version Override (Force v3.0.0)
+## Step 5: Enable Version Override (Force v3.0.0) 🔴
 
 Currently, the shell is configured to ALLOW override but not FORCE it. To see the override in action:
 
@@ -119,7 +119,7 @@ Currently, the shell is configured to ALLOW override but not FORCE it. To see th
 2. **Restart shell**
 3. **Both MFEs will now use v3**
 
-## 📊 Step 6: Verify Central Dependency Management
+## Step 6: Verify Central Dependency Management
 
 ### Check in Browser DevTools:
 
@@ -144,7 +144,7 @@ import('@angular/core').then(ng => console.log('Angular version:', ng.VERSION.fu
 // Should show: Angular version: 20.0.0 (from shell)
 ```
 
-## 🎯 Expected Visual Results
+## Expected Visual Results
 
 ### Normal Mode (No Override):
 ```
@@ -172,7 +172,7 @@ MFE2 Page:
 └── RED badge "Shared UI v3.0.0" ← OVERRIDDEN!
 ```
 
-## 🎨 Badge Color Reference
+## Badge Color Reference
 
 The badges use Bootstrap's color classes:
 
@@ -182,7 +182,7 @@ The badges use Bootstrap's color classes:
 | v2.0.0 | 🟢 Green | `text-bg-success` | MFE2's version |
 | v3.0.0 | 🔴 Red | `text-bg-danger` | Shell's override version |
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Problem: No badges visible
 
@@ -234,7 +234,7 @@ npm run serve:shell
 - Hard refresh: Ctrl+Shift+R
 - Or clear cache in DevTools
 
-## 📸 Screenshots Guide
+## Screenshots Guide
 
 ### What to Screenshot for Demo:
 
@@ -244,7 +244,7 @@ npm run serve:shell
 4. **DevTools Network Tab** - Showing no duplicate Angular loads
 5. **After Override** - Both MFEs showing red badges
 
-## 🎬 Demo Script
+## Demo Script
 
 For presenting this to stakeholders:
 
@@ -257,7 +257,7 @@ For presenting this to stakeholders:
 7. **After Override**: "Both MFEs now use version 3 - red badges!"
 8. **Conclusion**: "This gives us team autonomy with central control"
 
-## 🚀 Quick Demo Commands
+## Quick Demo Commands
 
 ```bash
 # Start everything
@@ -276,7 +276,7 @@ start http://localhost:4200
 # 4. Refresh browser
 ```
 
-## ✅ Success Checklist
+## Success Checklist
 
 - [ ] All three apps running (ports 4200, 4201, 4202)
 - [ ] Home page loads with architecture explanation
