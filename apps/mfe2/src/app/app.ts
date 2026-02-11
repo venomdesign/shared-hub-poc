@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UiBadgeComponent } from 'shared-ui-v2';
+import { UiBadgeComponent, SHARED_UI_VERSION } from 'shared-ui-v2';
 import { GridModule, PageService, SortService, FilterService } from '@syncfusion/ej2-angular-grids';
 
 @Component({
@@ -12,6 +12,9 @@ import { GridModule, PageService, SortService, FilterService } from '@syncfusion
 })
 export class App {
   protected readonly title = signal('mfe2');
+  protected readonly actualVersion = SHARED_UI_VERSION;
+  protected readonly requestedVersion = '2.0.0';
+  protected readonly isOverridden = (SHARED_UI_VERSION as string) !== this.requestedVersion;
   
   // Syncfusion Grid Data
   public gridData: Object[] = [

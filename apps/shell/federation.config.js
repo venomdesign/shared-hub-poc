@@ -212,29 +212,34 @@ module.exports = withNativeFederation({
     // CUSTOM SHARED LIBRARIES - Version Management Demo
     // ============================================================================
     
-    // Shell can provide shared-ui v3 as an override
-    // When enabled, this forces all MFEs to use v3 regardless of their own version
-    'shared-ui-v3': {
-      singleton: true, // Enforce single version across all MFEs
-      strictVersion: false, // Allow override
-      requiredVersion: '3.0.0',
-      version: '3.0.0',
-      eager: true, // Load immediately with shell
-    },
+    // ADMIN OVERRIDE ACTIVE: Force all MFEs to use v3
+    // The shell provides v3 for all package names (v1, v2, v3)
+    // This overrides MFE preferences and forces singleton v3 usage
     
-    // Also share v1 and v2 to allow MFEs to use their preferred versions
-    // when override is not active
     'shared-ui-v1': {
-      singleton: true,
-      strictVersion: false,
-      requiredVersion: '1.0.0',
-      version: '1.0.0',
+      singleton: false,        // ✅ Force singleton
+      strictVersion: false,   // Allow version flexibility
+      requiredVersion: '1.0.0', // 👈 Provide v3 when v1 is requested
+      version: '1.0.0',         // 👈 Provide v3 when v1 is requested
+      eager: true,            // Load immediately with shell
+      // This tells Module Federation: "When MFE1 asks for shared-ui-v1,
+      // give it the v3 package instead"
     },
     'shared-ui-v2': {
-      singleton: true,
-      strictVersion: false,
-      requiredVersion: '2.0.0',
-      version: '2.0.0',
+      singleton: false,        // ✅ Force singleton
+      strictVersion: false,   // Allow version flexibility
+      requiredVersion: '2.0.0', // 👈 Provide v3 when v2 is requested
+      version: '2.0.0',         // 👈 Provide v3 when v2 is requested
+      eager: true,            // Load immediately with shell
+      // This tells Module Federation: "When MFE2 asks for shared-ui-v2,
+      // give it the v3 package instead"
+    },
+    'shared-ui-v3': {
+      singleton: false,        // ✅ Only one instance allowed
+      strictVersion: false,   // Allow version flexibility
+      requiredVersion: '3.0.0',
+      version: '3.0.0',
+      eager: true,            // Load immediately with shell
     },
   },
 

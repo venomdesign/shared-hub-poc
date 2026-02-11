@@ -7,13 +7,28 @@
             <h1 class="card-title mb-0">{{ title() }}</h1>
             <shared-ui-badge label="Shared UI"></shared-ui-badge>
           </div>
-          <p class="card-text">
-            This is MFE2 (Micro Frontend 2) using <strong>shared-ui v2.0.0</strong>.
-          </p>
-          <div class="alert alert-success" role="alert">
-            <strong>Version Independence:</strong> This MFE uses version 2.0.0 of the shared-ui library,
-            demonstrating how different microfrontends can use different versions of shared dependencies.
-          </div>
+          @if (isOverridden) {
+            <div class="alert alert-danger" role="alert">
+              <h5 class="alert-heading">
+                <i class="bi bi-exclamation-triangle-fill"></i> Admin Override Active!
+              </h5>
+              <p class="mb-2">
+                <strong>Requested:</strong> shared-ui v{{ requestedVersion }} (Green badge)<br>
+                <strong>Actually Using:</strong> shared-ui v{{ actualVersion }} (Red badge) - <span class="badge bg-danger">OVERRIDDEN BY SHELL</span>
+              </p>
+              <p class="mb-0">
+                <strong>Admin Override:</strong> The shell has forced this MFE to use version {{ actualVersion }} instead of its preferred version {{ requestedVersion }}.
+              </p>
+            </div>
+          } @else {
+            <p class="card-text">
+              This is MFE2 (Micro Frontend 2) using <strong>shared-ui v{{ actualVersion }}</strong>.
+            </p>
+            <div class="alert alert-success" role="alert">
+              <strong>Version Independence:</strong> This MFE uses version {{ actualVersion }} of the shared-ui library,
+              demonstrating how different microfrontends can use different versions of shared dependencies.
+            </div>
+          }
         </div>
       </div>
     </div>

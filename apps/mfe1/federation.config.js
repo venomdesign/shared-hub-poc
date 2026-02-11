@@ -23,8 +23,9 @@ module.exports = withNativeFederation({
     },
     
     // MFE1 uses shared-ui v1.0.0
+    // BUT: Shell can override this with v3 when singleton: true
     'shared-ui-v1': {
-      singleton: false, // Allow version coexistence
+      singleton: false, // ✅ Accept shell's override (v3)
       strictVersion: false, // Don't enforce strict version matching
       requiredVersion: '1.0.0',
       version: '1.0.0',

@@ -14,7 +14,10 @@
     "docs:serve": "compodoc -p libs/shared-ui/tsconfig.lib.json -s -w --port 8080",
     "docs:build": "compodoc -p libs/shared-ui/tsconfig.lib.json -d docs/compodoc",
     "docs:serve-static": "compodoc -p libs/shared-ui/tsconfig.lib.json -s --port 8080",
-    "serve:showcase": "ng serve showcase --port 4300"
+    "serve:showcase": "ng serve showcase --port 4300",
+    "override:enable": "node scripts/enable-v3-override.js && npm install",
+    "override:disable": "node scripts/disable-v3-override.js && npm install",
+    "override:status": "npm list shared-ui-v1 shared-ui-v2 shared-ui-v3"
   },
   "private": true,
   "dependencies": {

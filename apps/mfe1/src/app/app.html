@@ -11,37 +11,81 @@
           </div>
         </div>
         <div class="card-body">
-          <div class="alert alert-primary border-primary" role="alert">
-            <h4 class="alert-heading">
-              <i class="bi bi-info-circle-fill"></i> Version Information
-            </h4>
-            <p class="mb-0">
-              This is <strong>MFE1 (Micro Frontend 1)</strong> using <strong>shared-ui v1.0.0</strong>.
-            </p>
-          </div>
-          
-          <div class="card mt-4 bg-light">
-            <div class="card-body">
-              <h5 class="card-title">🔵 Blue Badge = Version 1.0.0</h5>
-              <p class="card-text">
-                <strong>Version Independence:</strong> This MFE uses version 1.0.0 of the shared-ui library,
-                demonstrating how different microfrontends can use different versions of shared dependencies.
+          @if (isOverridden) {
+            <div class="alert alert-danger border-danger" role="alert">
+              <h4 class="alert-heading">
+                <i class="bi bi-exclamation-triangle-fill"></i> Admin Override Active!
+              </h4>
+              <p class="mb-2">
+                This is <strong>MFE1 (Micro Frontend 1)</strong>.
               </p>
-              <p class="card-text">
-                The badge component you see above is loaded from <code>shared-ui-v1</code> package.
+              <p class="mb-0">
+                <strong>Requested:</strong> shared-ui v{{ requestedVersion }} (Blue badge)<br>
+                <strong>Actually Using:</strong> shared-ui v{{ actualVersion }} (Red badge) - <span class="badge bg-danger">OVERRIDDEN BY SHELL</span>
               </p>
             </div>
-          </div>
+            
+            <div class="card mt-4 bg-light border-danger">
+              <div class="card-body">
+                <h5 class="card-title text-danger">🔴 Red Badge = Version {{ actualVersion }} (Override Active)</h5>
+                <p class="card-text">
+                  <strong>Admin Override:</strong> The shell has forced this MFE to use version {{ actualVersion }} instead of its preferred version {{ requestedVersion }}.
+                  This demonstrates the shell's ability to override MFE version preferences for critical updates.
+                </p>
+                <p class="card-text">
+                  The badge component you see above is loaded from <code>shared-ui-v1</code> package, but the shell has redirected it to v{{ actualVersion }}.
+                </p>
+              </div>
+            </div>
 
-          <div class="mt-4">
-            <h5>What This Demonstrates:</h5>
-            <ul>
-              <li>MFE1 can use its preferred version (v1.0.0)</li>
-              <li>The blue badge color indicates version 1</li>
-              <li>This version can coexist with other versions used by other MFEs</li>
-              <li>The shell can override this version if needed for critical updates</li>
-            </ul>
-          </div>
+            <div class="mt-4">
+              <h5>What This Demonstrates:</h5>
+              <ul>
+                <li>MFE1 requests version {{ requestedVersion }} but gets version {{ actualVersion }}</li>
+                <li>The red badge color indicates version 3 (overridden)</li>
+                <li>The shell can force all MFEs to use the same version for critical updates</li>
+                <li>No MFE code changes were needed - override is controlled by the shell</li>
+              </ul>
+              <div class="alert alert-info mt-3">
+                <strong>To disable override:</strong> Run <code>npm run override:disable</code> and restart all apps.
+              </div>
+            </div>
+          } @else {
+            <div class="alert alert-primary border-primary" role="alert">
+              <h4 class="alert-heading">
+                <i class="bi bi-info-circle-fill"></i> Version Information
+              </h4>
+              <p class="mb-0">
+                This is <strong>MFE1 (Micro Frontend 1)</strong> using <strong>shared-ui v{{ actualVersion }}</strong>.
+              </p>
+            </div>
+            
+            <div class="card mt-4 bg-light">
+              <div class="card-body">
+                <h5 class="card-title">🔵 Blue Badge = Version {{ actualVersion }}</h5>
+                <p class="card-text">
+                  <strong>Version Independence:</strong> This MFE uses version {{ actualVersion }} of the shared-ui library,
+                  demonstrating how different microfrontends can use different versions of shared dependencies.
+                </p>
+                <p class="card-text">
+                  The badge component you see above is loaded from <code>shared-ui-v1</code> package.
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <h5>What This Demonstrates:</h5>
+              <ul>
+                <li>MFE1 can use its preferred version (v{{ actualVersion }})</li>
+                <li>The blue badge color indicates version 1</li>
+                <li>This version can coexist with other versions used by other MFEs</li>
+                <li>The shell can override this version if needed for critical updates</li>
+              </ul>
+              <div class="alert alert-info mt-3">
+                <strong>To enable override:</strong> Run <code>npm run override:enable</code> and restart all apps.
+              </div>
+            </div>
+          }
         </div>
       </div>
     </div>
