@@ -123,8 +123,28 @@ Open your browser to: **http://localhost:4200**
 - Demonstrates independent version usage
 - Uses shell's Angular, Bootstrap, and RxJS
 
-### Version Override
-When shell's override is active, both MFEs will show **red badges** (v3.0.0), demonstrating central control.
+### Admin Version Override 🔴 NEW
+The shell can force all MFEs to use v3.0.0 with a simple command:
+
+```bash
+# Enable override - force all MFEs to use v3
+npm run override:enable
+
+# Restart all apps to see red badges
+npm run serve:shell
+npm run serve:mfe1
+npm run serve:mfe2
+
+# Disable override - restore version independence
+npm run override:disable
+
+# Check current status
+npm run override:status
+```
+
+When override is active, both MFEs will show **red badges** (v3.0.0) with clear indicators that the shell has overridden their preferred versions.
+
+**See [ADMIN_OVERRIDE_README.md](./ADMIN_OVERRIDE_README.md) for complete guide.**
 
 ## 📚 Documentation
 
@@ -134,6 +154,7 @@ When shell's override is active, both MFEs will show **red badges** (v3.0.0), de
 - **[COMPODOC_DOCUMENTATION.md](./COMPODOC_DOCUMENTATION.md)** - Complete Compodoc guide ⭐ NEW
 
 ### Architecture & Implementation
+- **[ADMIN_OVERRIDE_README.md](./ADMIN_OVERRIDE_README.md)** - Admin version override guide 🔴 NEW
 - **[VERSION_MANAGEMENT.md](./VERSION_MANAGEMENT.md)** - Shared library version management
 - **[CENTRAL_DEPENDENCY_MANAGEMENT.md](./CENTRAL_DEPENDENCY_MANAGEMENT.md)** - Central dependency control
 - **[SYNCFUSION_INTEGRATION.md](./SYNCFUSION_INTEGRATION.md)** - Syncfusion Grid integration ⭐ NEW
