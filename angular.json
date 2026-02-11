@@ -61,10 +61,17 @@
           "builder": "@angular-architects/native-federation:build",
           "options": {
             "target": "shell:serve-original:development",
-            "rebuildDelay": 500,
+            "rebuildDelay": 0,
             "dev": true,
-            "cacheExternalArtifacts": false,
             "port": 4200
+          },
+          "configurations": {
+            "development": {
+              "target": "shell:serve-original:development"
+            },
+            "production": {
+              "target": "shell:serve-original:production"
+            }
           }
         },
         "extract-i18n": {
@@ -219,10 +226,17 @@
           "builder": "@angular-architects/native-federation:build",
           "options": {
             "target": "mfe1:serve-original:development",
-            "rebuildDelay": 500,
+            "rebuildDelay": 0,
             "dev": true,
-            "cacheExternalArtifacts": false,
             "port": 4201
+          },
+          "configurations": {
+            "development": {
+              "target": "mfe1:serve-original:development"
+            },
+            "production": {
+              "target": "mfe1:serve-original:production"
+            }
           }
         },
         "extract-i18n": {
@@ -377,10 +391,17 @@
           "builder": "@angular-architects/native-federation:build",
           "options": {
             "target": "mfe2:serve-original:development",
-            "rebuildDelay": 500,
+            "rebuildDelay": 0,
             "dev": true,
-            "cacheExternalArtifacts": false,
             "port": 4202
+          },
+          "configurations": {
+            "development": {
+              "target": "mfe2:serve-original:development"
+            },
+            "production": {
+              "target": "mfe2:serve-original:production"
+            }
           }
         },
         "extract-i18n": {
