@@ -128,6 +128,9 @@
               "node_modules/@syncfusion/ej2-notifications/styles/bootstrap5.css",
               "node_modules/@syncfusion/ej2-grids/styles/bootstrap5.css",
               "apps/shell/src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -293,6 +296,9 @@
               "node_modules/@syncfusion/ej2-notifications/styles/bootstrap5.css",
               "node_modules/@syncfusion/ej2-grids/styles/bootstrap5.css",
               "apps/mfe1/src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -458,6 +464,9 @@
               "node_modules/@syncfusion/ej2-notifications/styles/bootstrap5.css",
               "node_modules/@syncfusion/ej2-grids/styles/bootstrap5.css",
               "apps/mfe2/src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
